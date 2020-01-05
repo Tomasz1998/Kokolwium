@@ -6,22 +6,40 @@ namespace Kolokwium1
 {
     class EBook
     {
+        private readonly string _Autor;
+        private readonly string _Tytul;
+        private readonly DateTime _DataWydania;
+
+        private DateTime _DataOstatniegoZakupu;
         private double _CenaStandardowa;
-        
-        public string Autor { get; private set; }
-        public string Tytul { get; private set; }
-        public DateTime DataWydania    
+        private int _Obnizka;
+        private double _AkutalnaCena;
+
+
+        public EBook(string autor, string tytul, DateTime dataWydania, DateTime dataOstatniegoZakupu, double cenaStandardowa, int obnizka)
+        {
+            _Autor = autor;
+            _Tytul = tytul;
+            _DataWydania = dataWydania;
+            DataOstatniegoZakupu = dataOstatniegoZakupu;
+            CenaStandardowa = cenaStandardowa;
+            Obnizka = obnizka;
+        }
+        public string Autor { get => _Autor; }
+        public string Tytul { get => _Tytul; }
+        public DateTime DataWydania { get => _DataWydania; }
+        public DateTime DataOstatniegoZakupu
         {
             get
             {
-                return DataWydania;
+                return _DataOstatniegoZakupu;
             }
-            private set
+            set
             {
-                DataWydania = value;
+                if (value.Date < _DataOstatniegoZakupu)
+                    _DataOstatniegoZakupu = value;
             }
         }
-        public DateTime DataOstatniegoZakupu { get; set; }
         public double CenaStandardowa
         {
             get
@@ -30,35 +48,37 @@ namespace Kolokwium1
             }
             set
             {
-                _CenaStandardowa = value;
-                if (_CenaStandardowa < 0)
-                {
-                    _CenaStandardowa = 0;
-                }
+                if (value > 0)
+                    _CenaStandardowa = value;
+                else
+                    Console.WriteLine("Cena standardowa nie moze być ujemna.");
             }
         }
+        public int Obnizka
+        {
+            get
+            {
+                return _Obnizka;
+            }
+            set
+            {
+                if (_CenaStandardowa - value > 0)
+                    _Obnizka = value;
+                else
+                    Console.WriteLine("Obnizka nie może dać ceny niższej niż 0.00 zł.");
+            }
+        }
+
         public double AktualnaCena
         {
             get
             {
-                return AktualnaCena;
+                return _AkutalnaCena = CenaStandardowa * ((100 - Obnizka) / 100);
             }
             set
             {
-                AktualnaCena = _CenaStandardowa * ((100 - Obniżka) / 100);
+                _AkutalnaCena = CenaStandardowa * ((100 - Obnizka) / 100);
             }
         }
-        public double Obniżka { get; set; }
-
-        public EBook(string autor, string tytul, DateTime dataWydania, DateTime dataOstatniegoZakupu, double cenaStandardowa, double obniżka)
-        {
-            Autor = autor;
-            Tytul = tytul;
-            DataWydania = dataWydania;
-            DataOstatniegoZakupu = dataOstatniegoZakupu;
-            CenaStandardowa = cenaStandardowa;
-            Obniżka = obniżka;
-        }
-
     }
 }
