@@ -36,7 +36,7 @@ namespace Kolokwium1
             }
             set
             {
-                if (value.Date < _DataOstatniegoZakupu)
+                if (value.Date > _DataOstatniegoZakupu)
                     _DataOstatniegoZakupu = value;
             }
         }
@@ -62,7 +62,7 @@ namespace Kolokwium1
             }
             set
             {
-                if (_CenaStandardowa - value > 0)
+                if (value > 0)
                     _Obnizka = value;
                 else
                     Console.WriteLine("Obnizka nie może dać ceny niższej niż 0.00 zł.");
@@ -75,10 +75,7 @@ namespace Kolokwium1
             {
                 return _AkutalnaCena = CenaStandardowa * ((100 - Obnizka) / 100);
             }
-            set
-            {
-                _AkutalnaCena = CenaStandardowa * ((100 - Obnizka) / 100);
-            }
+            
         }
     }
 }

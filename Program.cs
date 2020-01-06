@@ -1,15 +1,12 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Kolokwium1
 {
 
     class Program
     {
-        static void OpiszEBook(EBook ksiazka)
-        {
-            Console.WriteLine("Autor " + ksiazka.Autor + " Tytuł " + ksiazka.Tytul + " Data Wydania " + ksiazka.DataWydania + " Data ostatniego zakupu" + ksiazka.DataOstatniegoZakupu +
-                " Cena standardowa " + ksiazka.CenaStandardowa + " Obniżka " + ksiazka.Obnizka);
-        }
+      
         public static double Zadanie1(int liczba)
         {
             
@@ -33,11 +30,7 @@ namespace Kolokwium1
 
             Console.Write("Podaj liczbę przez którą dzielić:");
 
-            if (int.TryParse(Console.ReadLine(), out int dzielnik))
-            {
-                Console.WriteLine("Nie można dzielic przez literki");
-                return;
-            }
+            int dzielnik = int.Parse(Console.ReadLine());
 
             if (dzielnik == 0)
                 throw new DivideByZeroException();
@@ -109,7 +102,7 @@ namespace Kolokwium1
                 {
                     if (i >= tablica2D_1.GetLength(0) || i >= tablica2D_2.GetLength(0))
                         continue;
-                    if (j >= tablica2D_1.GetLength(0) || j >= tablica2D_2.GetLength(0))
+                    if (j >= tablica2D_1.GetLength(1) || j >= tablica2D_2.GetLength(1))
                         continue;
                     tablica2D_wynikowa[i, j] = tablica2D_1[i, j] + tablica2D_2[i, j];
                 }
@@ -210,8 +203,11 @@ namespace Kolokwium1
             }
 
             //Zadanie 5
-            EBook ebook = new EBook("Sienkiewicz", "Potop", new DateTime(2018 / 2 / 21), new DateTime(2018 / 3 / 28), 29.99, 15);
-            Console.WriteLine(ebook);
+            EBook ebook = new EBook("Sienkiewicz", "Potop", new DateTime(1963, 12, 09), new DateTime(2018, 3, 28), 29.99, 50);
+            Console.WriteLine($"Autor: {ebook.Autor}   Tytuł: {ebook.Tytul}  " +
+                $"Data Wydania: {ebook.DataWydania}  " + $"Data ostatniego zakupu: {ebook.DataOstatniegoZakupu}  " +
+                $"Cena Standardowa: {ebook.CenaStandardowa} zł  " + $"Obniżka: {ebook.Obnizka.ToString("P", CultureInfo.InvariantCulture)}  " +
+                $"Aktualna Cena: {ebook.AktualnaCena} zł");
 
             Console.ReadKey();
             
