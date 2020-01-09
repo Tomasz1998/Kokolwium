@@ -43,80 +43,7 @@ namespace Kolokwium1
                 }
             }
         }
-        public static void Zadanie3()
-        {
-            Console.WriteLine("Podaj wymiary tablicy pierwszej dwuwymiarowej:");
-            Console.Write("Podaj \"i\" tablicy pierwszej: ");
-            int n = int.Parse(Console.ReadLine());
-
-            Console.Write("Podaj \"j\" tablicy pierwszej: ");
-            int m = int.Parse(Console.ReadLine());
-
-            Console.Write("Podaj \"i\" tablicy drugiej: ");
-            int n2 = int.Parse(Console.ReadLine());
-
-            Console.Write("Podaj \"j\" tablicy drugiej: ");
-            int m2 = int.Parse(Console.ReadLine());
-
-            int[,] tablica2D_1 = new int[n, m];
-            int[,] tablica2D_2 = new int[n2, m2];
-
-            int n3;
-            int m3;
-
-
-
-            if (n > n2)
-                n3 = n;
-            else
-                n3 = n2;
-
-            if (m > m2)
-                m3 = m;
-            else
-                m3 = m2;
-
-            int[,] tablica2D_wynikowa = new int[n3, m3];
-            tablica2D_wynikowa.Initialize();
-
-            for (int i = 0; i < tablica2D_1.GetLength(0); i++)
-            {
-                for (int j = 0; j < tablica2D_1.GetLength(1); j++)
-                {
-                    tablica2D_1[i, j] = i + j;
-                }
-            }
-
-            for (int i = 0; i < tablica2D_2.GetLength(0); i++)
-            {
-                for (int j = 0; j < tablica2D_2.GetLength(1); j++)
-                {
-                    tablica2D_2[i, j] = i * j;
-                }
-            }
-
-
-            for (int i = 0; i < tablica2D_wynikowa.GetLength(0); i++)
-            {
-                for (int j = 0; j < tablica2D_wynikowa.GetLength(1); j++)
-                {
-                    if (i >= tablica2D_1.GetLength(0) || i >= tablica2D_2.GetLength(0))
-                        continue;
-                    if (j >= tablica2D_1.GetLength(1) || j >= tablica2D_2.GetLength(1))
-                        continue;
-                    tablica2D_wynikowa[i, j] = tablica2D_1[i, j] + tablica2D_2[i, j];
-                }
-            }
-
-            for (int i = 0; i < tablica2D_wynikowa.GetLength(0); i++)
-            {
-                for (int j = 0; j < tablica2D_wynikowa.GetLength(1); j++)
-                {
-                    Console.Write("{0}\t", tablica2D_wynikowa[i, j]);
-                }
-                Console.WriteLine();
-            }
-        }
+      
         static int Zadanie4(int[,] tablica)
         {
             int min = int.MaxValue;
@@ -165,8 +92,8 @@ namespace Kolokwium1
                 Console.WriteLine("Nie mozna dzielić przez zero");
             }
             //Zadanie 3
-            Zadanie3();
-            //Zadanie 4
+          
+            
             int[,] jeden = new int[3, 8];
             int[,] dwa = new int[5, 5];
 
@@ -203,7 +130,7 @@ namespace Kolokwium1
             }
 
             //Zadanie 5
-            EBook ebook = new EBook("Sienkiewicz", "Potop", new DateTime(1963, 12, 09), new DateTime(2018, 3, 28), 29.99, 50);
+            EBook ebook = new EBook("Sienkiewicz", "Potop", new DateTime(1963, 12, 09), new DateTime(2018, 3, 28), 30, 50);
             Console.WriteLine($"Autor: {ebook.Autor}   Tytuł: {ebook.Tytul}  " +
                 $"Data Wydania: {ebook.DataWydania}  " + $"Data ostatniego zakupu: {ebook.DataOstatniegoZakupu}  " +
                 $"Cena Standardowa: {ebook.CenaStandardowa} zł  " + $"Obniżka: {ebook.Obnizka.ToString("P", CultureInfo.InvariantCulture)}  " +

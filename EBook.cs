@@ -12,11 +12,11 @@ namespace Kolokwium1
 
         private DateTime _DataOstatniegoZakupu;
         private double _CenaStandardowa;
-        private int _Obnizka;
+        private double _Obnizka;
         private double _AkutalnaCena;
 
 
-        public EBook(string autor, string tytul, DateTime dataWydania, DateTime dataOstatniegoZakupu, double cenaStandardowa, int obnizka)
+        public EBook(string autor, string tytul, DateTime dataWydania, DateTime dataOstatniegoZakupu, double cenaStandardowa, double obnizka)
         {
             _Autor = autor;
             _Tytul = tytul;
@@ -54,7 +54,7 @@ namespace Kolokwium1
                     Console.WriteLine("Cena standardowa nie moze być ujemna.");
             }
         }
-        public int Obnizka
+        public double Obnizka
         {
             get
             {
@@ -73,7 +73,7 @@ namespace Kolokwium1
         {
             get
             {
-                return _AkutalnaCena = CenaStandardowa * ((100 - Obnizka) / 100);
+                return CenaStandardowa * ((100 - Obnizka) / 100);
             }
             
         }
