@@ -13,7 +13,7 @@ namespace Kolokwium1
         private DateTime _DataOstatniegoZakupu;
         private double _CenaStandardowa;
         private double _Obnizka;
-        private double _AkutalnaCena;
+        
 
 
         public EBook(string autor, string tytul, DateTime dataWydania, DateTime dataOstatniegoZakupu, double cenaStandardowa, double obnizka)
